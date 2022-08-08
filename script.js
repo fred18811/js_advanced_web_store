@@ -1,19 +1,44 @@
 window.addEventListener('load',()=>{
 
 const goods = [
-    { title: 'Shirt', price: 150 },
-    { title: 'Socks', price: 50 },
-    { title: 'Jacket', price: 350 },
+    { img: 'img/sneakers.jpg', title: 'Кеды'},
+    { img: 'img/socks.jpg', title: 'Носки', price: 50 },
+    { img: 'img/jacket.jpg', title: 'Куртка', price: 350 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
+    { title: 'Shoes', price: 250 },
     { title: 'Shoes', price: 250 },
 ];
 
-const renderGoodsItem = (title, price) => {
-    return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
-};
-const renderGoodsList = (list) => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-    document.querySelector('.goods-list').innerHTML = goodsList;
-}
 renderGoodsList(goods);
 
 })
+
+
+
+const renderGoodsItem = (img="img/no_photo.jpg", title=" ", price="0") => (`
+    <div class="goods-item">
+        <img src=${img}>
+        <h3>${title}</h3>
+        <p>${price} р.</p>
+        <button>Добвить</button>
+    </div>
+`);
+const renderGoodsList = list => {
+    let goodsList = list.map(item => renderGoodsItem(item.img, item.title, item.price));
+    document.querySelector('.goods-list').innerHTML = goodsList.join(' ');
+}

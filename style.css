@@ -1,0 +1,124 @@
+body, h1, h2, h3, p {
+    margin:0;
+    padding: 0;
+}
+header {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color: black;
+    color: white;
+    top: 0px;
+    left: 0px;
+}
+header div {
+    padding: 10px 0;
+    display:flex;
+    justify-content: space-between;
+}
+
+header div a {
+    text-decoration: none;
+}
+
+header div a:visited{
+    color: white;
+}
+
+header div a h1 {
+    text-transform: uppercase;
+    font-style: italic;
+    text-shadow: 4px 4px 0px deeppink; 
+}
+
+main {
+    margin-top:100px;
+}
+
+
+.vertical-paddindg {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.cart-button {
+    border-radius: 50%;
+    padding: 0;
+    border-color: red;
+    border: none;
+}
+
+.fa {
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 23px;
+    color: deeppink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa:hover {
+    background-color: gainsboro;
+    color: rgb(248, 0, 132);
+}
+
+
+.goods-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0px -10px;
+}
+.goods-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    cursor: pointer;
+    width:250px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 0 10px 35px 10px;
+    box-shadow: 4px 4px 0px rgba(128, 128, 128, 0.308);
+    transition: 0.3s;
+}
+
+.goods-item:hover{
+    transform: scale(1.1);
+}
+
+.goods-item img {
+    width: 100%;
+}
+.goods-item h3 {
+    text-align: center;
+}
+
+.goods-item p {
+    text-align: center;
+    font-size:18px;
+    color: deeppink;
+}
+
+.goods-item button {
+    background-color:black;
+    color: white;
+    height: 40px;
+    border:none;
+}
+
+.goods-item button:hover {
+    background-color:rgba(0, 0, 0, 0.774);
+    color: rgb(248, 0, 132);
+}
+
+
+@media (max-width: 850px) {
+    .vertical-paddindg {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+  }
