@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Гамбургерная</title>
+</head>
+<body>
+    <header><h1>Гамбургерная</h1></header>
+    <main>
+        <form method="post" id="burgerForm">
+            <div>
+                <h2>Выберете гамбургер</h2>
+            <input type="radio" type="submit" name="burger" value="big" id="bigBurger" checked>
+            <label for="bigBurger">Большой гамбургер</label>
+            <input type="radio" type="submit" name="burger" value="small" id="smallBurger">
+            <label for="smallBurger">Маленький гамбургер</label>
+            </div>
+
+            <div>
+                <h2>Выберете начинку</h2>
+            <input type="radio" type="submit" name="stuffing" value="cheese" id="cheeseStuffing" checked>
+            <label for="cheeseStuffing">С сыром</label>
+            <input type="radio" type="submit" name="stuffing" value="salad" id="saladStuffing">
+            <label for="saladStuffing">С салатом</label>
+            <input type="radio" type="submit" name="stuffing" value="potato" id="potatoStuffing">
+            <label for="potatoStuffing">С картофелем</label>
+            </div>
+            <div>
+                <h2>Дополнительно</h2>
+                <input type="checkbox" id="spice" value="spice">
+                <label for="spice">Посыпать приправой</label>
+
+                <input type="checkbox" id="mayonnaise" value="mayonnaise">
+                <label for="mayonnaise">Полить майонезом</label>
+            </div>
+        </form>
+        <button id='getCalories'>Посчитать колории</button>
+        <button id='getPrice'>Посчитать цену</button>
+        <h1 id='message'></h1>
+    </main>
+</body>
+</html>
