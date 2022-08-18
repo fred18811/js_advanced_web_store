@@ -66,13 +66,10 @@ class GoodsItem {
 class GoodsList {
     goods = [];
     fetchGoods() {
-        return new Promise((resolve, reject) => {
-            service(`${BASE}${GOODS}`)
-                .then(res => {
-                    this.goods = res;
-                    resolve();
-                });
-        })
+        return service(`${BASE}${GOODS}`)
+            .then(res => {
+                this.goods = res;
+            });
     }
     calcGoods() {
         return this.goods.reduce((a, { price }) => price ? a + price : a + 0, 0);
