@@ -30,7 +30,6 @@ window.addEventListener('load', () => {
     const goodsList = new GoodsList();
     goodsList.fetchGoods()
         .then(() => goodsList.render());
-    //console.log(goodsList.calcGoods());
 })
 
 function service(url) {
@@ -69,7 +68,7 @@ class GoodsList {
         return service(`${BASE}${GOODS}`)
             .then(res => {
                 this.goods = res;
-            });
+            })
     }
     calcGoods() {
         return this.goods.reduce((a, { price }) => price ? a + price : a + 0, 0);
