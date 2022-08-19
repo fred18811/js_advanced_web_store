@@ -82,3 +82,46 @@ class GoodsList {
         document.querySelector('.goods-list').innerHTML = goodsList.join(' ');
     }
 }
+
+
+
+// 1) Какие виды областей видимости вы знаете? Написать ответ ниже
+//   1)Глобальная
+//   2)Блочная
+//   3)Область видимости функции
+//   4)Блок catch
+
+// // 2) Исправьте код так чтобы в консоль выводились числа от 0 до 10
+// for (var i = 0; i <= 10; i++) {
+//     (function(index) {
+//         setTimeout(() => {
+//             console.log(index);
+//          }, 0)
+//     })(i);
+//  }
+ 
+ 
+//  // 3) Исправьте код так чтобы в консоль выводилось "John"
+//  var firstName = "Elena"
+//  const obj = {
+//     firstName: 'John',
+//     sayFirstName: function() {
+//        console.log(this.firstName)
+//     }
+//  }
+//  obj.sayFirstName();
+ 
+ 
+ // 4) Исправьте код так чтобы в консоль не выводилась ошибка (нельзя исправлять тело функции getArrowFunction)
+ const user = {
+    age: 20
+ }
+ function getArrowFunction() {
+    "use strict"
+    return () => {
+       console.log(this.age)
+    }
+ }
+ 
+ const arrowFunction = getArrowFunction.call(user);
+ arrowFunction();
