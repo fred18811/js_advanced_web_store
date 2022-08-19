@@ -91,25 +91,25 @@ class GoodsList {
 //   3)Область видимости функции
 //   4)Блок catch
 
-// // 2) Исправьте код так чтобы в консоль выводились числа от 0 до 10
-// for (var i = 0; i <= 10; i++) {
-//     (function(index) {
-//         setTimeout(() => {
-//             console.log(index);
-//          }, 0)
-//     })(i);
-//  }
+// 2) Исправьте код так чтобы в консоль выводились числа от 0 до 10
+for (var i = 0; i <= 10; i++) {
+    (function(index) {
+        setTimeout(() => {
+            console.log(index);
+         }, 0)
+    })(i);
+ }
  
  
-//  // 3) Исправьте код так чтобы в консоль выводилось "John"
-//  var firstName = "Elena"
-//  const obj = {
-//     firstName: 'John',
-//     sayFirstName: function() {
-//        console.log(this.firstName)
-//     }
-//  }
-//  obj.sayFirstName();
+ // 3) Исправьте код так чтобы в консоль выводилось "John"
+ var firstName = "Elena"
+ const obj = {
+    firstName: 'John',
+    sayFirstName: function() {
+       console.log(this.firstName)
+    }
+ }
+ obj.sayFirstName();
  
  
  // 4) Исправьте код так чтобы в консоль не выводилась ошибка (нельзя исправлять тело функции getArrowFunction)
