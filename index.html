@@ -6,21 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интернет магазин</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://use.fontawesome.com/a6d64d76c1.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-    <header>
-        <div class="vertical-paddindg">
-            <a href=""><h1>Store</h1></a>
-            <button class="cart-button" type="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+    <div id="app">
+        <header>
+            <div class="vertical-paddindg">
+                <a href="">
+                    <h1>Store</h1>
+                </a>
+                <div>
+                    <input v-model="searchLine" type="text"><button>Поиск</button>
+                </div>
+                <button v-on:click="changeStateCart" class="cart-button" type="button"><i class="fa fa-shopping-cart"
+                        aria-hidden="true"></i></button>
+            </div>
+        </header>
+        <main class="vertical-paddindg">
+            <div v-if="goods.length" class="goods-list">
+                <div v-for="good in goods" class='goods-item'>
+                    <img v-if="good.img" v-bind:src="good.img">
+                    <img v-else src="img/no_photo.jpg">
+                    <h3>{{good.product_name}}</h3>
+                    <p>{{good.price}} р.</p>
+                    <button>Добвить</button>
+                </div>
+            </div>
+            <div v-else class="no-data">
+                Нет данных
+            </div>
+        </main>
+
+        <div v-if="isVisibleCart" class="background-fone">
+            <div class="cart-box">
+                <div class="closeBtnCart" v-on:click="changeStateCart">X</div>
+                text
+            </div>
         </div>
-    </header>
-    <main class="vertical-paddindg">
-        <div class="goods-list"></div>
-    </main>
+    </div>
 </body>
 
 </html>
