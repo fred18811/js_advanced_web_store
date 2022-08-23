@@ -4,6 +4,7 @@ const GOODS = '/catalogData.json';
 var app = new Vue({
     el: '#app',
     data: {
+        noImg:'img/no_photo.jpg',
         searchLine: '',
         isVisibleCart: false,
         goods: [],
