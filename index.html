@@ -14,39 +14,18 @@
 
 <body>
     <div id="app">
-        <header>
-            <div class="vertical-paddindg">
-                <a href="">
-                    <h1>Store</h1>
-                </a>
-                <div>
-                    <input v-model="searchLine" type="text"><button>Поиск</button>
-                </div>
-                <button v-on:click="changeStateCart" class="cart-button" type="button"><i class="fa fa-shopping-cart"
-                        aria-hidden="true"></i></button>
-            </div>
-        </header>
-        <main class="vertical-paddindg">
-            <div v-if="goods.length" class="goods-list">
-                <div v-for="good in goods" class='goods-item'>
-                    <img v-if="good.img" v-bind:src="good.img">
-                    <img v-else  v-bind:src="noImg">
-                    <h3>{{good.product_name}}</h3>
-                    <p>{{good.price}} р.</p>
-                    <button>Добвить</button>
-                </div>
-            </div>
-            <div v-else class="no-data">
-                Нет данных
-            </div>
+        <header-component>
+            <search-line :search_line="searchLine"@update:search_line="searchLine = $event"></search-line>
+            <cart-button @change_state_cart="changeStateCart">
+                <i class="fa fa-shopping-cart"aria-hidden="true"></i>
+            </cart-button>
+        </header-component>
+        <main-component>
+            <goods-list v-if="goods.length" :noimg="noImg" :goods="filteredItems"></goods-list>
+            <error v-else-if="error.length">{{error}}</error>
+            <div v-else class="no-data">Нет данных</div>
         </main>
-
-        <div v-if="isVisibleCart" class="background-fone">
-            <div class="cart-box">
-                <div class="closeBtnCart" v-on:click="changeStateCart">X</div>
-                text
-            </div>
-        </div>
+        <window-cart :visible_cart="isVisibleCart" @change_state_cart="changeStateCart"></window-cart>
     </div>
 </body>
 
