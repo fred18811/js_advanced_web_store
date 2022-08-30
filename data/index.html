@@ -25,7 +25,7 @@
             <error v-else-if="error.length">{{error}}</error>
             <div v-else class="no-data">Нет данных</div>
         </main>
-        <window-cart :visible_cart="isVisibleCart" @change_state_cart="changeStateCart"></window-cart>
+        <window-cart v-if="isVisibleCart" @change_state_cart="changeStateCart"></window-cart>
     </div>
 </body>
 

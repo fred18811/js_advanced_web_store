@@ -1,6 +1,18 @@
-const BASE = ' https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
-const GOODS = '/catalogData.json';
+const BASE = 'http://localhost:8000';
+const GOODS = '/catalogGoods';
+const CART_CATALOG = `${BASE}/goodsCart`;
 const ERROR = 'Что то пошло не так!';
+
+function service(url, method="GET", body) {
+    return fetch(url,{
+    headers: Object.assign({}, body ? {
+      'Content-Type': 'application/json; charset=utf-8'
+    } : {}),
+    method,
+    body: JSON.stringify(body)
+  })
+  .then((res) => res.json())
+}
 
 Vue.component('cart-button', {
     template: `
@@ -18,9 +30,6 @@ Vue.component('search-line', {
         </div>
     `
 });
-
-
-
 Vue.component('header-component', {
     template: `
     <header>
@@ -56,21 +65,77 @@ Vue.component('goods-item', {
         <img v-else :src="noimg">
         <h3>{{good.product_name}}</h3>
         <p>{{good.price}} р.</p>
-        <button>Добвить</button>
+        <button @click="addGood">Добвить</button>
     </div>
-    `
+    `,
+    methods:{
+        addGood(){
+            service(CART_CATALOG, 'PUT', {
+                id: this.good.id_product
+            })
+        }
+    }
 });
+
 Vue.component('window-cart', {
-    props: ['visible_cart'],
+    data() {
+        return {
+           cartGoodsItems: []
+        }
+      },
+
     template: `
-    <div v-if="visible_cart" class="background-fone">
+    <div class="background-fone">
         <div class="cart-box">
             <div class="closeBtnCart" @click="$emit('change_state_cart')">X</div>
-            text
+            <div v-if="cartGoodsItems.length"><cart-goods-item v-for="item in cartGoodsItems" :item="item" :key="item.id" :addGood="addGood" :deleteGood="deleteGood"></cart-goods-item></div>
+            <h1 v-else>Корзина пуста</h1>
         </div>
     </div>
-    `
+    `,
+    mounted(){
+        service(CART_CATALOG)
+            .then(data => this.cartGoodsItems = data) 
+    },
+    methods:{
+        addGood(item){
+            service(CART_CATALOG, 'PUT', {
+                id: item.id_product
+            })
+                .then(data => {
+                    service(CART_CATALOG)
+                        .then(data => this.cartGoodsItems = data) 
+                }) 
+        },
+        deleteGood(item){
+            service(CART_CATALOG, 'DELETE', {
+                id: item.id_product
+            })
+                .then(data => {
+                    service(CART_CATALOG)
+                        .then(data => this.cartGoodsItems = data) 
+                }) 
+        },
+    }
 });
+
+Vue.component('cart-goods-item', {
+    props: [
+      'item',
+      'addGood',
+      'deleteGood'
+    ],
+    template: `
+      <div class="cart-content-item">
+         <h3>{{item?.data?.product_name}}</h3>
+         <div>Колличество: {{item?.count}}</div>
+         <div>Сумма: {{item?.total}}</div>
+         <div><button @click="addGood(item)">+</button></div>
+         <div><button @click="deleteGood(item)">-</button></div>
+      </div>
+    `
+  })
+
 
 Vue.component('error', {
     template: `
@@ -94,8 +159,7 @@ var app = new Vue({
         }
     },
     mounted() {
-        fetch(`${BASE}${GOODS}`)
-            .then(res => res.json())
+        service(`${BASE}${GOODS}`)
             .then(data => this.goods = data)
             .catch(err => this.error = ERROR)
     },
