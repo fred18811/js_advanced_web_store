@@ -6,21 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интернет магазин</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://use.fontawesome.com/a6d64d76c1.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-    <header>
-        <div class="vertical-paddindg">
-            <a href=""><h1>Store</h1></a>
-            <button class="cart-button" type="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-        </div>
-    </header>
-    <main class="vertical-paddindg">
-        <div class="goods-list"></div>
-    </main>
+    <div id="app">
+        <header-component>
+            <search-line :search_line="searchLine"@update:search_line="searchLine = $event"></search-line>
+            <cart-button @change_state_cart="changeStateCart">
+                <i class="fa fa-shopping-cart"aria-hidden="true"></i>
+            </cart-button>
+        </header-component>
+        <main-component>
+            <goods-list v-if="goods.length" :noimg="noImg" :goods="filteredItems"></goods-list>
+            <error v-else-if="error.length">{{error}}</error>
+            <div v-else class="no-data">Нет данных</div>
+        </main>
+        <window-cart :visible_cart="isVisibleCart" @change_state_cart="changeStateCart"></window-cart>
+    </div>
 </body>
 
 </html>
