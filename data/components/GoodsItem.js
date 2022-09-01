@@ -1,3 +1,6 @@
+import { service } from './service.js';
+import { CART_CATALOG } from '../setting.js'
+
 export const GoodsItem = Vue.component('goods-item', {
     props: ['good','noimg'],
     template: `
