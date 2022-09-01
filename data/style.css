@@ -156,6 +156,12 @@ main {
     justify-content: center;
 }
 
+.cart-content-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+}
 
 @media (max-width: 850px) {
     .vertical-paddindg {
