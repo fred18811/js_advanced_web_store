@@ -7,9 +7,23 @@ import { GoodsList } from "./components/GoodsList.js";
 import { WindowCart } from "./components/WindowCart.js";
 import { CartGoodsItem } from "./components/CartGoodsItem.js";
 import { Error } from "./components/Error.js";
-import { BASE, GOODS } from '../setting.js'
-import { service } from './components/service.js';
 
+
+const BASE = 'http://localhost:8000';
+const GOODS = '/catalogGoods';
+const CART_CATALOG = `${BASE}/goodsCart`;
+const ERROR = 'Что то пошло не так!';
+
+function service(url, method="GET", body) {
+    return fetch(url,{
+    headers: Object.assign({}, body ? {
+      'Content-Type': 'application/json; charset=utf-8'
+    } : {}),
+    method,
+    body: JSON.stringify(body)
+  })
+  .then((res) => res.json())
+}
 
 
 var app = new Vue({

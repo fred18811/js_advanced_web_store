@@ -1,6 +1,3 @@
-import { service } from './service.js';
-import { CART_CATALOG } from '../setting.js'
-
 export const WindowCart = Vue.component('window-cart', {
     data() {
         return {
