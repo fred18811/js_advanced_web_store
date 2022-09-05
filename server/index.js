@@ -1,6 +1,6 @@
 const BASE = ' https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 const GOODS_CATALOG = `${BASE}/catalogData.json`;
-const CART_CATALOG = './data/cart.json'
+const CART_CATALOG = './cart.json'
 
 
 const request = require('request-promise')
@@ -85,7 +85,7 @@ function deleteCartGoods(id) {
 }
 
 app.use(cors());
-app.use(express.static('data'));
+app.use(express.static('../dist'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
